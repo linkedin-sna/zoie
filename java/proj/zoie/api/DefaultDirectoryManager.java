@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.SimpleFSDirectory;
+import org.apache.lucene.store.MMapDirectory;
 
 import proj.zoie.api.impl.util.ChannelUtil;
 import proj.zoie.api.impl.util.FileUtil;
@@ -77,8 +77,8 @@ public class DefaultDirectoryManager implements DirectoryManager
         }
       }
     }
-    
-    return new SimpleFSDirectory(_location);
+    log.info("using memory mapped directory");
+    return new MMapDirectory(_location);
   }
   
   public static IndexSignature readSignature(File file)
